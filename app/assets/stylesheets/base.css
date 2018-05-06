@@ -1,0 +1,19 @@
+.my-box {
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  border: 1px solid #f5efef;
+  float: left;
+  margin: 15px;
+  border-radius: 5px;
+  box-shadow: 2px 3px 0px #e4d8d8;
+  position:relative;
+  overflow:hidden;
+  }
+body{
+	padding: 10px;
+  border: 1px solid #f5efef;
+  margin: 15px;
+  border-radius: 5px;
+  box-shadow: 2px 3px 0px #e4d8d8;
+}

@@ -1,0 +1,25 @@
+<div class="container">
+  <h3><%= "Welcome " + @current_user.random_username.to_s %></h3>
+  Draw Your Colors Here!
+  <div class="row">
+    <div class="col-xs-3">
+      Select Color:<input type='text' id="flat" />
+    </div>
+    <div class="float-right"></div>
+    <div style="clear:both;"/>
+    
+    <div class="col-xs-9 grid-div">
+      <%= hidden_field(:user, :id, value: "#{@current_user.id}") %>
+      <% for i in ColorGrid::NOOFGRIDS %>
+        <% color = "#fff" %>
+        <% if @user_colored_grid_ids.include?(i) %>
+          <% index = @user_colored_grid_ids.index(i) %>
+          <% color = @user_colored_grid_colors[index] %>
+        <% end %>
+        <input type="text" class="col-xs-3 my-box" title="" id="<%=i%>" style="background-color: <%= color %>"></input>
+      <% end %>
+      <div style="clear:both;"/>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag "base", "data-turbolinks-track" => true  %>
