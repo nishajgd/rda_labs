@@ -5,7 +5,7 @@ class ColorGridsController < ApplicationController
   end
 
   def show
-    color_grids = ColorGrid.joins(:user).where("grid_id = ? and users.id != ?", params[:id], params[:user_id]).order(created_at: :DESC).limit(3)
+    color_grids = ColorGrid.color_history(params[:id], params[:user_id])
     render json: color_grids
   end
 end

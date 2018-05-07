@@ -1,3 +1,7 @@
+// Initialize Tooltip
+$( function() {
+  $( document ).tooltip();
+});
 
 // Display Tooltip
 $( "input.my-box" ).mouseover(function() {
@@ -10,13 +14,12 @@ $( "input.my-box" ).mouseover(function() {
       $("input.my-box").tooltip({
         content: function() { 
           if($(this).css("background-color") != "rgb(255, 255, 255)"){
-          var arr = []
-          $.each(data, function( index, value ) {
-            arr.push ("User: " + value["random_username"] + " updated with " + "Color " + value["color"]);
-          }); 
-          console.log(arr);
-          return arr.join(". ");
-        }
+            var arr = []
+            $.each(data, function( index, value ) {
+              arr.push (value["random_username"] + " updated with " + value["color"]);
+            }); 
+            return arr.join(". ");
+          }
         }
       });
     });
@@ -31,11 +34,15 @@ $("#flat").spectrum({
 // Draw Color to Grid
 $(".grid-div input").click(function(){
   var selected = $("#flat").val();
+  if (selected == '')
+    {
+      selected = "#000";
+    }
   var user = $("#user_id").val();
   $(this).css("background-color", selected);
   $.ajax({
     url: "/color_grids",
     data: {user_id: user, color: selected, grid_id: this.id},
     method: "POST",
-  }).done(function() { alert("Added Color!");});
+  });
 })
