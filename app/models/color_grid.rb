@@ -10,4 +10,12 @@ class ColorGrid < ApplicationRecord
     user_colored_grid_colors = latest_colored_grids.map(&:color)
     return user_colored_grid_ids, user_colored_grid_colors
   end
+
+  def self.color_history(id, user_id)
+    joins(:user)
+    .select("random_username, color, color_grids.created_at")
+    .where("grid_id = ? and users.id != ?", id, user_id)
+    .order(created_at: :DESC)
+    .limit(3)
+  end
 end
